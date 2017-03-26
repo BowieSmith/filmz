@@ -21,5 +21,8 @@ int main()
 	std::cout << "\nCall displaySearch() with queryString \"MoAnA\":\n\n";
 	filmDatabase2016.displaySearch("title","MoAnA");
 
+	std::cout << "\nCall displaySearch() with queryString \"Sony\":\n\n";
+	filmDatabase2016.displaySearch("studio","uni");
+
 	return 0;
 }

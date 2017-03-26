@@ -41,6 +41,16 @@ private:
 	void searchTitle(std::string title);
 
 	/**
+	 * Helper method to displaySearch()
+	 * When "studio" is passed to displaySearch(), searchStudio() is called.
+	 * This method sets the public static variable Film::studioSearchValue to
+	 * the value passed as an argument and displays all films produced by the
+	 * corresponding studio.
+	 * @param studio - Studio value to search for
+	 */
+	void searchStudio(std::string studio);
+
+	/**
 	 * Add Film object to database.
 	 * @param film - Film object
 	 */

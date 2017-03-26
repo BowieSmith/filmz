@@ -36,6 +36,17 @@ void displayFilmForMatchingTitle(Film& aFilm)
 	}
 }
 
+void displayFilmForMatchingStudio(Film& aFilm)
+{
+	std::string thisStudioLowercase = aFilm.getStudio();
+	std::transform(thisStudioLowercase.begin(), thisStudioLowercase.end(), thisStudioLowercase.begin(), ::tolower);
+	if (thisStudioLowercase == Film::studioSearchValue)
+	{
+		Film::studioSearchSuccess = true;
+		aFilm.displayFilmData();
+	}
+}
+
 void FilmDatabase::searchRank(int rank)
 {
 	Film::rankSearchValue = rank;
@@ -51,10 +62,25 @@ void FilmDatabase::searchTitle(std::string title)
 
 	if (!Film::titleSearchSuccess)
 	{
-		std::cout << "No title match the search string \"" << originalSearch
+		std::cout << "No title matching the search string \"" << originalSearch
 		   		  << "\" was found." << "\n\n";	
 	}
 	Film::titleSearchSuccess = false;
+}
+
+void FilmDatabase::searchStudio(std::string studio)
+{
+	std::string originalSearch = studio;
+	std::transform(studio.begin(), studio.end(), studio.begin(), ::tolower);
+	Film::studioSearchValue = studio;
+	filmDatabaseBST.inorderTraverse(displayFilmForMatchingStudio);
+
+	if (!Film::studioSearchSuccess)
+	{
+		std::cout << "No studio matching the search string \"" << originalSearch
+				  <<"\" was found." << "\n\n";
+	}
+	Film::studioSearchSuccess = false;
 }
 
 void FilmDatabase::add(const Film& aFilm)
@@ -107,5 +133,9 @@ void FilmDatabase::displaySearch(const std::string searchType,
 	if (searchType == "title")
 	{
 		searchTitle(queryString);
+	}
+	else if (searchType == "studio")
+	{
+		searchStudio(queryString);
 	}
 }
