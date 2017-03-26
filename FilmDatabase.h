@@ -51,6 +51,16 @@ private:
 	void searchStudio(std::string studio);
 
 	/**
+	 * Helper method to displaySearch()
+	 * When "month" is passed to displaySearch(), searchMonth() is called.
+	 * This method sets the public static variable Film::monthSearchValue to
+	 * the value passed as an argument and displays all films with an
+	 * opening date from the matching month.
+	 * @param month - Month number to search for
+	 */
+	void searchMonth(std::string month) throw(PrecondViolatedExcep);
+
+	/**
 	 * Add Film object to database.
 	 * @param film - Film object
 	 */
@@ -85,11 +95,12 @@ public:
 	 * @param query - string with specific query information
 	 * 		"title" - Exact name of film title
 	 * 		"keyword" - Comma separated string of key words
-	 * 		"studio" - Ecxact name of studio
+	 * 		"studio" - Exact name of studio
 	 * 		"month" - Enter 1-12 to search for films released in
 	 * 				  corresponding month
 	 */
-	void displaySearch(const std::string searchType, const std::string queryString);
+	void displaySearch(const std::string searchType,
+					   const std::string queryString) throw(PrecondViolatedExcep);
 };
 
 #endif

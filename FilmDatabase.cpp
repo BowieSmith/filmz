@@ -11,6 +11,40 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <string>
+
+int openingDateToMonthNumber(std::string openingDate)
+{
+	std::string month = openingDate.substr(openingDate.size() - 3, std::string::npos);
+	int monthInt;
+
+	if (month == "Jan")
+		monthInt = 1;
+	else if (month == "Feb")
+		monthInt = 2;
+	else if (month == "Mar")
+		monthInt = 3;
+	else if (month == "Apr")
+		monthInt = 4;
+	else if (month == "May")
+		monthInt = 5;
+	else if (month == "Jun")
+		monthInt = 6;
+	else if (month == "Jul")
+		monthInt = 7;
+	else if (month == "Aug")
+		monthInt = 8;
+	else if (month == "Sep")
+		monthInt = 9;
+	else if (month == "Oct")
+		monthInt = 10;
+	else if (month == "Nov")
+		monthInt = 11;
+	else if (month == "Dec")
+		monthInt = 12;
+
+	return monthInt;
+}
 
 void displayFilm(Film& aFilm)
 {
@@ -43,6 +77,16 @@ void displayFilmForMatchingStudio(Film& aFilm)
 	if (thisStudioLowercase == Film::studioSearchValue)
 	{
 		Film::studioSearchSuccess = true;
+		aFilm.displayFilmData();
+	}
+}
+
+void displayFilmForMatchingMonth(Film& aFilm)
+{
+	int thisFilmOpeningDateMonth = openingDateToMonthNumber(aFilm.getOpeningDate());
+	if (thisFilmOpeningDateMonth == Film::monthSearchValue)
+	{
+		Film::monthSearchSuccess = true;
 		aFilm.displayFilmData();
 	}
 }
@@ -81,6 +125,25 @@ void FilmDatabase::searchStudio(std::string studio)
 				  <<"\" was found." << "\n\n";
 	}
 	Film::studioSearchSuccess = false;
+}
+
+void FilmDatabase::searchMonth(std::string month) throw(PrecondViolatedExcep)
+{
+	std::string originalSearch = month;
+	int monthInt = std::stoi(month);
+
+	if (monthInt < 1 || monthInt > 12)
+		throw PrecondViolatedExcep("Month value must be between 1 and 12.");
+
+	Film::monthSearchValue = monthInt;
+	filmDatabaseBST.inorderTraverse(displayFilmForMatchingMonth);
+
+	if (!Film::monthSearchSuccess)
+	{
+		std::cout << "No film released in the month matching \"" << originalSearch
+				  <<"\" was found." << "\n\n";
+	}
+	Film::monthSearchSuccess = false;
 }
 
 void FilmDatabase::add(const Film& aFilm)
@@ -128,7 +191,7 @@ void FilmDatabase::displayReport(const std::string orderBy) throw(PrecondViolate
 }
 
 void FilmDatabase::displaySearch(const std::string searchType,
-								 const std::string queryString)
+								 const std::string queryString) throw(PrecondViolatedExcep)
 {
 	if (searchType == "title")
 	{
@@ -137,5 +200,9 @@ void FilmDatabase::displaySearch(const std::string searchType,
 	else if (searchType == "studio")
 	{
 		searchStudio(queryString);
+	}
+	else if (searchType == "month")
+	{
+		searchMonth(queryString);
 	}
 }

@@ -24,5 +24,8 @@ int main()
 	std::cout << "\nCall displaySearch() with queryString \"Sony\":\n\n";
 	filmDatabase2016.displaySearch("studio","uni");
 
+	std::cout << "\nCall displaySearch() with queryString \"12\":\n\n";
+	filmDatabase2016.displaySearch("month","12");
+
 	return 0;
 }
