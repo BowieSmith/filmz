@@ -56,6 +56,11 @@ public:
 	// Public variable to flag if studio search is successful
 	static bool studioSearchSuccess;
 
+	// Public variable to search by month of film release
+	static int monthSearchValue;
+	// Public variabl to flag if release month search is successful
+	static bool monthSearchSuccess;
+
 	/**
 	 * Default Film Constructor
 	 */
@@ -102,6 +107,12 @@ public:
 	 * @return - Name of studio which produced film
 	 */
 	std::string getStudio();
+
+	/**
+	 * Return film opening date
+	 * @return - Date film was release "DD-Mon"
+	 */
+	std::string getOpeningDate();
 
 	/**
 	 * Display film data in readable format

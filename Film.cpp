@@ -20,6 +20,9 @@ bool Film::titleSearchSuccess = false;
 std::string Film::studioSearchValue = "";
 bool Film::studioSearchSuccess = false;
 
+int Film::monthSearchValue = 0;
+bool Film::monthSearchSuccess = false;
+
 /**
  * Returns double value as formatted string in form "$x,xxx,xxx"
  * @param value - double value to be formatted
@@ -109,6 +112,11 @@ std::string Film::getTitle()
 std::string Film::getStudio()
 {
 	return studio;
+}
+
+std::string Film::getOpeningDate()
+{
+	return openingDate;
 }
 
 void Film::displayFilmData()
