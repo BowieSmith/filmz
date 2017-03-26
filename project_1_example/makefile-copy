@@ -1,0 +1,13 @@
+# This is the makefile for the Student Database Example
+BSTTest.exe: Student.o StudentDatabase.o NotFoundException.o PrecondViolatedExcep.o BSTTest.o 
+	g++ -std=gnu++11 -o BSTTest.exe Student.o StudentDatabase.o NotFoundException.o PrecondViolatedExcep.o BSTTest.o 
+Student.o: Student.cpp Student.h 
+	g++ -std=gnu++11 -ggdb -c Student.cpp
+StudentDatabase.o: StudentDatabase.cpp StudentDatabase.h BinarySearchTree.h BinaryTreeInterface.h BinaryNodeTree.h BinaryNode.h NotFoundException.h PrecondViolatedExcep.h Student.h
+	g++ -std=gnu++11 -ggdb -c StudentDatabase.cpp
+NotFoundException.o: NotFoundException.cpp NotFoundException.h 
+	g++ -std=gnu++11 -ggdb -c NotFoundException.cpp
+PrecondViolatedExcep.o: PrecondViolatedExcep.cpp PrecondViolatedExcep.h 
+	g++ -std=gnu++11 -ggdb -c PrecondViolatedExcep.cpp
+BSTTest.o: BSTTest.cpp StudentDatabase.h BinarySearchTree.h BinaryTreeInterface.h BinaryNodeTree.h BinaryNode.h NotFoundException.h PrecondViolatedExcep.h Student.h
+	g++ -std=gnu++11 -ggdb -c BSTTest.cpp 
