@@ -13,8 +13,12 @@
 #include <algorithm>
 
 int Film::rankSearchValue = 0;
+
 std::string Film::titleSearchValue = "";
 bool Film::titleSearchSuccess = false;
+
+std::string Film::studioSearchValue = "";
+bool Film::studioSearchSuccess = false;
 
 /**
  * Returns double value as formatted string in form "$x,xxx,xxx"
@@ -100,6 +104,11 @@ int Film::getRank()
 std::string Film::getTitle()
 {
 	return title;
+}
+
+std::string Film::getStudio()
+{
+	return studio;
 }
 
 void Film::displayFilmData()

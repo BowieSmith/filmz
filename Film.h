@@ -48,7 +48,13 @@ public:
 
 	// Public variable to search by title
 	static std::string titleSearchValue;
+	// Public variable to flag if title search is successful
 	static bool titleSearchSuccess;
+
+	// Public variable to search by studio
+	static std::string studioSearchValue;
+	// Public variable to flag if studio search is successful
+	static bool studioSearchSuccess;
 
 	/**
 	 * Default Film Constructor
@@ -90,6 +96,12 @@ public:
 	 * @return - Title of film
 	 */
 	std::string getTitle();
+
+	/**
+	 * Return film studio
+	 * @return - Name of studio which produced film
+	 */
+	std::string getStudio();
 
 	/**
 	 * Display film data in readable format
