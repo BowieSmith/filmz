@@ -1,5 +1,6 @@
 #include "Film.h"
 #include "FilmDatabase.h"
+#include "Menu.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -34,8 +35,12 @@ void testDatabase(FilmDatabase& db)
 int main()
 {
 	FilmDatabase filmDatabase2016("Films2016.csv");
+	Menu interface(filmDatabase2016);
 
-	testDatabase(filmDatabase2016);
+	interface.mainMenu();
+
+
+//	testDatabase(filmDatabase2016);
 
 	return 0;
 }
