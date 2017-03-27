@@ -61,6 +61,16 @@ private:
 	void searchMonth(std::string month) throw(PrecondViolatedExcep);
 
 	/**
+	 * Helper method to displaySearch()
+	 * When "keyword" is passed to displaySearch(), searchKeyword() is called.
+	 * This method sets the public static variable Film::keywordSearchString to
+	 * the value passed as an argument and displays all films with titles
+	 * matching any of the keywords in the comma separated list.
+	 * @param keywords - Comma-separated string of keywords
+	 */
+	void searchKeywords(std::string keywords);
+
+	/**
 	 * Add Film object to database.
 	 * @param film - Film object
 	 */

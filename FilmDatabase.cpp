@@ -91,6 +91,26 @@ void displayFilmForMatchingMonth(Film& aFilm)
 	}
 }
 
+void displayFilmsWithMatchingKeywords(Film& aFilm)
+{
+	std::string thisTitleLowercase = aFilm.getTitle();
+	std::transform(thisTitleLowercase.begin(), thisTitleLowercase.end(), thisTitleLowercase.begin(), ::tolower);
+
+	int count = 0;
+	bool match = false;
+
+	while (!match && (count < Film::keywordSearchVector.size()))
+	{
+		if (thisTitleLowercase.find(Film::keywordSearchVector[count]) != std::string::npos)
+		{
+			match = true;
+			aFilm.displayFilmData();
+			Film::keywordSearchSuccess = true;
+		}
+		count++;
+	}
+}
+
 void FilmDatabase::searchRank(int rank)
 {
 	Film::rankSearchValue = rank;
@@ -146,6 +166,32 @@ void FilmDatabase::searchMonth(std::string month) throw(PrecondViolatedExcep)
 	Film::monthSearchSuccess = false;
 }
 
+void FilmDatabase::searchKeywords(std::string keywords)
+{
+	std::string originalSearch = keywords;
+	std::transform(keywords.begin(), keywords.end(), keywords.begin(), ::tolower);
+
+	std::istringstream ss(keywords);
+	std::string currentKeyword;
+
+	Film::keywordSearchVector.clear();
+
+	while (std::getline(ss, currentKeyword, ','))
+	{
+		Film::keywordSearchVector.push_back(currentKeyword);
+		std::cout << "Keyword: " << currentKeyword << std::endl;
+	}
+
+	filmDatabaseBST.inorderTraverse(displayFilmsWithMatchingKeywords);
+
+	if (!Film::keywordSearchSuccess)
+	{
+		std::cout << "No films with a title matching the keywords \"" << originalSearch
+				  <<"\" were found." << "\n\n";
+	}
+	Film::keywordSearchSuccess = false;
+}
+
 void FilmDatabase::add(const Film& aFilm)
 {
 	filmDatabaseBST.add(aFilm);
@@ -197,6 +243,10 @@ void FilmDatabase::displaySearch(const std::string searchType,
 	{
 		searchTitle(queryString);
 	}
+	else if (searchType == "keywords")
+	{
+		searchKeywords(queryString);
+	}
 	else if (searchType == "studio")
 	{
 		searchStudio(queryString);
@@ -204,5 +254,11 @@ void FilmDatabase::displaySearch(const std::string searchType,
 	else if (searchType == "month")
 	{
 		searchMonth(queryString);
+	}
+	else
+	{
+		std::string errorMessage = "displayReport(std::string) must be passed an";
+		errorMessage += "\nargument equal to \"title\",\"keywords\",\"studio\", or \"month\"";
+		throw PrecondViolatedExcep(errorMessage);
 	}
 }
