@@ -1,7 +1,9 @@
 # Makefile for FilmDatabase Application.
 
-filmDatabaseApp: Film.o FilmDatabase.o Menu.o NotFoundException.o PrecondViolatedExcep.o filmDatabaseApp.o 
-	g++ -std=gnu++11 -o filmDatabaseApp Film.o FilmDatabase.o Menu.o NotFoundException.o PrecondViolatedExcep.o filmDatabaseApp.o
+objects = Film.o FilmDatabase.o Menu.o NotFoundException.o PrecondViolatedExcep.o filmDatabaseApp.o
+
+filmDatabaseApp: $(objects)
+	g++ -std=gnu++11 -o filmDatabaseApp $(objects)
 Film.o: Film.cpp Film.h 
 	g++ -std=gnu++11 -ggdb -c Film.cpp
 FilmDatabase.o: FilmDatabase.cpp FilmDatabase.h BinarySearchTree.h BinaryTreeInterface.h BinaryNodeTree.h BinaryNode.h NotFoundException.h PrecondViolatedExcep.h Film.h
