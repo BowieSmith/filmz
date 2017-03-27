@@ -17,21 +17,12 @@
 #define MENU_
 
 #include "FilmDatabase.h"
-#include <iostream>
-#include <string>
 
 class Menu
 {
 private:
 	// Database this menu interfaces to
 	FilmDatabase db;
-
-public:
-	/**
-	 * This starts the main menu and gives options to the user to search the
-	 * database, display reports, or give information about the application.
-	 */
-	void mainMenu();
 
 	/**
 	 * This function displays information about what the application is and
@@ -50,6 +41,20 @@ public:
 	 * searching the database.
 	 */
 	void searchMenu();
+
+public:
+	/**
+	 * Menu constructor.
+	 * Loads FilmDatabase in to Menu class.
+	 * @param filmDB - FilmDatabase reference
+	 */
+	Menu(FilmDatabase& filmDB);
+
+	/**
+	 * This starts the main menu and gives options to the user to search the
+	 * database, display reports, or give information about the application.
+	 */
+	void mainMenu();
 };
 
 #endif
