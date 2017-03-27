@@ -23,6 +23,9 @@ bool Film::studioSearchSuccess = false;
 int Film::monthSearchValue = 0;
 bool Film::monthSearchSuccess = false;
 
+std::vector<std::string> Film::keywordSearchVector;
+bool Film::keywordSearchSuccess = false;
+
 /**
  * Returns double value as formatted string in form "$x,xxx,xxx"
  * @param value - double value to be formatted

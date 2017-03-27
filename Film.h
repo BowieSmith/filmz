@@ -14,6 +14,7 @@
 #define FILM_H_
 
 #include <string>
+#include <vector>
 
 class Film
 {
@@ -58,8 +59,14 @@ public:
 
 	// Public variable to search by month of film release
 	static int monthSearchValue;
-	// Public variabl to flag if release month search is successful
+	// Public variable to flag if release month search is successful
 	static bool monthSearchSuccess;
+
+	// Public variable to store string to search film titles by keywords
+	// String should contain keywords separated by commas
+	static std::vector<std::string> keywordSearchVector;
+	// Public variable to flag if keyword search is successful
+	static bool keywordSearchSuccess;
 
 	/**
 	 * Default Film Constructor
