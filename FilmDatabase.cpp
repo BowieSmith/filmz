@@ -8,10 +8,30 @@
 #include "Film.h"
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <vector>
 #include <algorithm>
 #include <string>
+
+void displayFilmDataHeader()
+{
+	std::cout << std::right << std::setw(68) << "Total"
+			  << std::setw(14) << "Total"
+			  << std::setw(11) << "Opening"
+			  << std::setw(14) << "Opening"
+			  << std::setw(10) << "Opening\n";
+
+	std::cout << std::left  << std::setw(5) << "Rank"
+			  << std::setw(50) << "Title"
+			  << std::setw(8) << "Studio"
+			  << std::setw(14) << "Gross"
+			  << std::setw(9) << "Theaters"
+			  << std::setw(14) << "Gross"
+			  << std::setw(9) << "Theaters"
+			  << std::setw(8) << "Date\n"
+			  << std::endl;
+}
 
 int openingDateToMonthNumber(std::string openingDate)
 {
@@ -179,7 +199,6 @@ void FilmDatabase::searchKeywords(std::string keywords)
 	while (std::getline(ss, currentKeyword, ','))
 	{
 		Film::keywordSearchVector.push_back(currentKeyword);
-		std::cout << "Keyword: " << currentKeyword << std::endl;
 	}
 
 	filmDatabaseBST.inorderTraverse(displayFilmsWithMatchingKeywords);
@@ -217,6 +236,8 @@ FilmDatabase::FilmDatabase(const std::string filename)
 
 void FilmDatabase::displayReport(const std::string orderBy) throw(PrecondViolatedExcep)
 {
+	displayFilmDataHeader();
+
 	if (orderBy == "title")
 	{
 		filmDatabaseBST.inorderTraverse(displayFilm);
@@ -239,6 +260,8 @@ void FilmDatabase::displayReport(const std::string orderBy) throw(PrecondViolate
 void FilmDatabase::displaySearch(const std::string searchType,
 								 const std::string queryString) throw(PrecondViolatedExcep)
 {
+	displayFilmDataHeader();
+
 	if (searchType == "title")
 	{
 		searchTitle(queryString);

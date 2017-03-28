@@ -124,13 +124,13 @@ std::string Film::getOpeningDate()
 
 void Film::displayFilmData()
 {
-	std::cout << std::left << std::fixed << std::setw(4) << rank
+	std::cout << std::fixed << std::setw(5) << rank
 			  << std::setw(50) << title
 			  << std::setw(8) << studio
 			  << std::setw(14) << doubleToDollar(totalGross)
-			  << std::setw(6) << totalTheaters
+			  << std::setw(9) << totalTheaters
 			  << std::setw(14) << doubleToDollar(openingGross)
-			  << std::setw(6) << openingTheaters
+			  << std::setw(9) << openingTheaters
 			  << std::setw(8) << openingDate << std::endl;
 }
 
