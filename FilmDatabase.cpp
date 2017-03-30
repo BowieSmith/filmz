@@ -14,6 +14,9 @@
 #include <algorithm>
 #include <string>
 
+/**
+ * Helper function to display column headers before outputting film data.
+ */
 void displayFilmDataHeader()
 {
 	std::cout << "\t" << std::right << std::setw(68) << "Total"
@@ -33,6 +36,13 @@ void displayFilmDataHeader()
 			  << std::endl;
 }
 
+/**
+ * Helper function. Receives opening date as a string in the format "DD-MMM"
+ * and returns an integer matching the MMM.
+ * Ex Jan=1, Feb=2, Nov=11, Dec=12
+ * @param openingData String stored in Film class as opening date
+ * @return int representation of month in openingDate
+ */
 int openingDateToMonthNumber(std::string openingDate)
 {
 	std::string month = openingDate.substr(openingDate.size() - 3, std::string::npos);
@@ -66,11 +76,20 @@ int openingDateToMonthNumber(std::string openingDate)
 	return monthInt;
 }
 
+/**
+ * Helper function to display films during traversal of FilmDatabase.
+ * @param aFilm - Film to display data
+ */
 void displayFilm(Film& aFilm)
 {
 	aFilm.displayFilmData();
 }
 
+/**
+ * Helper function to display film data during database traversal.
+ * Only display data if film rank = Film::rankSearchValue
+ * @param aFilm - Film to display
+ */
 void displayFilmForMatchingRank(Film& aFilm)
 {
 	if (aFilm.getRank() == Film::rankSearchValue)
@@ -79,6 +98,11 @@ void displayFilmForMatchingRank(Film& aFilm)
 	}
 }
 
+/**
+ * Helper function to display film data during database traversal.
+ * Only display data if film title = Film::titleSearchValue
+ * @param aFilm - Film to display
+ */
 void displayFilmForMatchingTitle(Film& aFilm)
 {
 	std::string thisTitleLowercase = aFilm.getTitle();
@@ -90,6 +114,11 @@ void displayFilmForMatchingTitle(Film& aFilm)
 	}
 }
 
+/**
+ * Helper function to display film data during database traversal.
+ * Only display data if film studio = Film::studioSearchValue
+ * @param aFilm - Film to display
+ */
 void displayFilmForMatchingStudio(Film& aFilm)
 {
 	std::string thisStudioLowercase = aFilm.getStudio();
@@ -101,6 +130,11 @@ void displayFilmForMatchingStudio(Film& aFilm)
 	}
 }
 
+/**
+ * Helper function to display film data during database traversal.
+ * Only display data if film month= Film::monthSearchValue
+ * @param aFilm - Film to display
+ */
 void displayFilmForMatchingMonth(Film& aFilm)
 {
 	int thisFilmOpeningDateMonth = openingDateToMonthNumber(aFilm.getOpeningDate());
@@ -111,6 +145,12 @@ void displayFilmForMatchingMonth(Film& aFilm)
 	}
 }
 
+/**
+ * Helper function to display film data during database traversal.
+ * Only display data if film title contains any of the values in
+ * Film::keywordSearchVector
+ * @param aFilm - Film to display
+ */
 void displayFilmsWithMatchingKeywords(Film& aFilm)
 {
 	std::string thisTitleLowercase = aFilm.getTitle();
