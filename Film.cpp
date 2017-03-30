@@ -124,7 +124,7 @@ std::string Film::getOpeningDate()
 
 void Film::displayFilmData()
 {
-	std::cout << std::fixed << std::setw(5) << rank
+	std::cout << "\t" << std::setw(5) << rank
 			  << std::setw(50) << title
 			  << std::setw(8) << studio
 			  << std::setw(14) << doubleToDollar(totalGross)

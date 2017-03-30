@@ -16,13 +16,13 @@
 
 void displayFilmDataHeader()
 {
-	std::cout << std::right << std::setw(68) << "Total"
+	std::cout << "\t" << std::right << std::setw(68) << "Total"
 			  << std::setw(14) << "Total"
 			  << std::setw(11) << "Opening"
 			  << std::setw(14) << "Opening"
 			  << std::setw(10) << "Opening\n";
 
-	std::cout << std::left  << std::setw(5) << "Rank"
+	std::cout << "\t" << std::left  << std::setw(5) << "Rank"
 			  << std::setw(50) << "Title"
 			  << std::setw(8) << "Studio"
 			  << std::setw(14) << "Gross"
@@ -170,6 +170,16 @@ void FilmDatabase::searchStudio(std::string studio)
 void FilmDatabase::searchMonth(std::string month) throw(PrecondViolatedExcep)
 {
 	std::string originalSearch = month;
+	bool isAlpha = false;
+
+	std::locale loc;
+	std::string str="C++";
+
+	for (std::string::iterator it = month.begin(); it != month.end(); ++it)
+	{
+		if (std::isalpha(*it,loc))
+			throw PrecondViolatedExcep("Month value must be an integer between 1 and 12");
+	}
 	int monthInt = std::stoi(month);
 
 	if (monthInt < 1 || monthInt > 12)

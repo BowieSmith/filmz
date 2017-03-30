@@ -7,6 +7,7 @@ Menu::Menu(FilmDatabase& filmDB) : db(filmDB)
 
 void Menu::mainMenu()
 {
+	std::cout << "\n\n\n" << std::endl;
 	std::cout << "\t _____ _ _               \n"
 		 	  << "\t|  ___(_) |_ __ ___  ____\n"
 		  	  << "\t| |_  | | | '_ ` _ \\|_  /\n"
@@ -29,6 +30,7 @@ void Menu::mainMenu()
 	  			  << "\tEnter Selection -> ";
 
 		std::cin >> input;
+		std::cout << "\n\n\n" << std::endl;
 
 		if (input == 'a' || input == 'A')
 		{
@@ -44,7 +46,7 @@ void Menu::mainMenu()
 		}
 		else if (input == 'x' || input == 'X')
 		{
-			std::cout << "\n\n\tGOODBYE!\n\n\n\n\n";
+			std::cout << "\n\n\n\n\tGOODBYE!\n\n\n";
 			continueBrowsing = false;
 		}
 		else
@@ -52,7 +54,6 @@ void Menu::mainMenu()
 			std::cout << "\n\n\tYou have entered an incorrent value.\n"
 					  << "\tPlease Enter: 'A', 'R', 'S', or 'X'\n\n";
 		}
-		std::cout << "\n\n\n";
 	}
 	while(continueBrowsing);
 	
@@ -65,6 +66,8 @@ void Menu::aboutApplication()
 
 	std::cin.get();
 	std::cin.ignore();
+
+	std::cout << "\n\n\n\n";
 }
 
 void Menu::reportMenu()
@@ -93,14 +96,14 @@ void Menu::reportMenu()
 		else if (input == 'x' || input == 'X')
 		{
 			continueBrowsing = false;
-			std::cout << "\n\n\n\n\n";
+			std::cout << "\n\n\n\n";
 		}
 		else
 		{
 			std::cout << "\n\n\tYou have entered an incorrent value.\n"
 					  << "\tPlease Enter: 'T', 'R', or 'X'\n\n";
 		}
-		std::cout << "\n\n\n";
+		std::cout << "\n\n\n\n";
 	}
 	while(continueBrowsing);
 }
@@ -124,53 +127,56 @@ void Menu::searchMenu()
 
 		if (input == 't' || input == 'T')
 		{
-			std::cout << "\tEnter an exact movie title to search for.\n"
-					  << "\t-> ";
-			std::cin >> queryString;
+			std::cout << "\n\n\tEnter an exact movie title to search for.\n"
+					  << "\n\t-> ";
+			std::cin.ignore();
+			std::getline(std::cin,queryString);
 			db.displaySearch("title",queryString);
 		}
 		else if (input == 'k' || input == 'K')
 		{
-			std::cout << "\tEnter one or more keywords to search for in movie titles.\n"
+			std::cout << "\n\n\tEnter one or more keywords to search for in movie titles.\n"
 					  << "\tFor multiple keywords, use the form \"keyword1,keyword2,keyword3\"\n"
-					  << "\t-> ";
-			std::cin >> queryString;
+					  << "\n\t-> ";
+			std::cin.ignore();
+			std::getline(std::cin,queryString);
 			db.displaySearch("keywords",queryString);
 		}
 		else if (input == 's' || input == 'S')
 		{
-			std::cout << "\tEnter the exact name of the studio to search for.\n"
-					  << "\t-> ";
-			std::cin >> queryString;
+			std::cout << "\n\n\tEnter the exact name of the studio to search for.\n"
+					  << "\n\t-> ";
+			std::cin.ignore();
+			std::getline(std::cin,queryString);
 			db.displaySearch("studio",queryString);
 		}
 		else if (input == 'm' || input == 'M')
 		{
-			std::cout << "\tEnter the month of release you are searching for.\n"
+			std::cout << "\n\n\tEnter the month of release you are searching for.\n"
 					  << "\tUse the values 1-12, where 1-Jan, 2-Feb, etc.\n"
-					  << "\t-> ";
-			std::cin >> queryString;
-			int monthAsInt = std::stoi(queryString);
-			if (monthAsInt >= 1 && monthAsInt <= 12)
+					  << "\n\t-> ";
+			std::cin.ignore();
+			std::getline(std::cin,queryString);
+
+			try
 			{
 				db.displaySearch("month",queryString);
 			}
-			else
+			catch (PrecondViolatedExcep e)
 			{
-				std::cout << "\tYou entered an incorrect value for the search month.\n";
+				std::cout << e.what();
 			}
 		}
 		else if (input == 'x' || input == 'X')
 		{
 			continueBrowsing = false;
-			std::cout << "\n\n\n\n\n";
 		}
 		else
 		{
 			std::cout << "\n\n\tYou have entered an incorrent value.\n"
 					  << "\tPlease Enter: 'T', 'K', 'S', 'M', or 'X'\n\n";
 		}
-		std::cout << "\n\n\n";
+		std::cout << "\n\n\n\n";
 	}
 	while(continueBrowsing);
 }
