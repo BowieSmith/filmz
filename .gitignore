@@ -1,6 +1,9 @@
 sites
 *.d
 
+# App Name
+filmz
+
 # Compiled Object files
 *.slo
 *.lo
