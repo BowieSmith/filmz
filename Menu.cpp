@@ -62,7 +62,7 @@ void Menu::mainMenu()
 void Menu::aboutApplication()
 {
 	std::cout << "\n\n\tAbout this application...\n\n"
-			  << "\tPress any key to continue...\n\n";
+			  << "\tPress ENTER to continue...\n\n";
 
 	std::cin.get();
 	std::cin.ignore();
