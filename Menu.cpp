@@ -61,8 +61,38 @@ void Menu::mainMenu()
 
 void Menu::aboutApplication()
 {
-	std::cout << "\n\n\tAbout this application...\n\n"
-			  << "\tPress ENTER to continue...\n\n";
+	std::cout << "\n\n\tGREETINGS!\n"
+			  << "\n\tWelcome to filmz!  Your one-stop shop for movie title browsing!"
+			  << "\n\tfilmz stores film titles along with the following information:"
+			  << "\n\t\t-Film Rank (by total gross)"
+			  << "\n\t\t-Film Title"
+			  << "\n\t\t-Producing Studio"
+			  << "\n\t\t-Total Gross"
+			  << "\n\t\t-Total theaters which Showed the Film"
+			  << "\n\t\t-Opening Weekend Gross"
+			  << "\n\t\t-Total Theaters which Showed the Film Opening Weekend"
+			  << "\n\t\t-Opening Data"
+			  << "\n\n\tfilmz allows you to generate reports of all movies based on rank"
+			  << "\n\tand alphabetical ordering by title."
+			  << "\n\n\tfilmz also gives you the ability to search for films by:"
+			  << "\n\tProducing Studio, Month of Release, or Title Name (full name or keywords)"
+			  << "\n\n\tUnfortunately, filmz currently only has titles from 2016, but more are"
+			  << "\n\tplanned to come!"
+			  << "\n\n\tFor the tech savvy folks out there, you may be wondering how this"
+			  << "\n\tapplication works? First, film data is read into the computer through"
+			  << "\n\ta file with comma-separated values. (This is a simple format with--you"
+			  << "\n\tguessed it--a list of comma-separated values!) Each line in the file of"
+			  << "\n\tcomma separated values stores the information for one movie. The information"
+			  << "\n\tis used to stored the movie data in separated chunks for each movie. In"
+			  << "\n\tcomputer jargon, these chunks of movie data are called 'objects'. These"
+			  << "\n\tobjects are stored in a tree structure (called a binary search tree) which"
+			  << "\n\tmakes searching for movies by title extremely fast! The tree of films"
+			  << "\n\tis a type of database--a place to store data with optimised data structures"
+			  << "\n\tfor making search and other operations fast. The Menu you see is simply"
+			  << "\n\tan interface for interacting with database."
+			  << "\n\n\tHappy browsing!\n"
+
+			  << "\n\tPress ENTER to continue...\n\n";
 
 	std::cin.get();
 	std::cin.ignore();
