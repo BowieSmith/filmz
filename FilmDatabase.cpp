@@ -272,15 +272,24 @@ FilmDatabase::FilmDatabase()
 
 FilmDatabase::FilmDatabase(const std::string filename)
 {
-	std::ifstream inFile(filename);
-	std::string line;
-	Film tempFilm;
-
-	while (inFile.peek() != EOF)
+	try
 	{
-		std::getline(inFile, line);
-		tempFilm = Film(line);
-		filmDatabaseBST.add(tempFilm);
+		std::ifstream inFile(filename);
+		std::string line;
+		Film tempFilm;
+
+		while (inFile.peek() != EOF)
+		{
+			std::getline(inFile, line);
+			tempFilm = Film(line);
+			filmDatabaseBST.add(tempFilm);
+		}
+
+		inFile.close();
+	}
+	catch (std::ifstream::failure e)
+	{
+		std::cerr << "Error opening file: " << filename << std::endl;
 	}
 }
 
